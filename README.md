@@ -1,2 +1,2 @@
 # gdpr-check
-gdpr convert files checking tools
+this tool is developed for checking files gdpr converted existing users information
