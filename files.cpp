@@ -1,41 +1,26 @@
+#include"file.h"
 
-/** visitdir.cpp **/
-#include <iostream>
-#include <boost/filesystem.hpp>
-
-using namespace boost::filesystem;
-using namespace std;
-
-void print_files(const path &full_path)
+int Files_Analys(const char *Input_Exp_Dir, const char *Input_Src_Dir)
 {
-	if (exists(full_path))
+	path Input_Exp_Path(Input_Exp_Dir);
+	if (!exists(Input_Exp_Path))
 	{
-		directory_iterator item_begin(full_path);
-		directory_iterator item_end;
+		cerr << "源文件夹无效，请确认！" << endl;
+		return -1;
+	}
 
-		for (; item_begin != item_end; ++item_begin)
+	recursive_directory_iterator end_iter;
+	for (recursive_directory_iterator iter(Input_Exp_Path);iter!=end_iter;iter++)
+	{
+		if (is_directory(*iter))
 		{
-			if (is_directory(*item_begin))
-			{
-				cout << item_begin->path().string() << "\t[dir]" << endl;
-				print_files(item_begin->path());
-			}
-			else
-			{
-				cout << item_begin->path().string() << endl;
-			}
+			cout << *iter<<"is dir"<< endl;
+		}
+		else
+		{
+			SrcFiles.push_back(iter->path().string());
+			cout << *iter << "is a file" << endl;
 		}
 	}
-}
-
-int check()
-{
-	char input[100];
-	cerr << "Input Directory Path: "<< endl;
-	cin >> input;
-
-	path full_path(input);
-	print_files(full_path);
-	system("pause");
 	return 0;
 }
