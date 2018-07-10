@@ -6,6 +6,15 @@
 using namespace std;
 extern map<std::string, std::string> Pre_Conf;
 
+string getTime()
+{
+	time_t timep;
+	time(&timep);
+	char tmp[64];
+	strftime(tmp, sizeof(tmp), "%Y-%m-%d %H:%M:%S", localtime(&timep));
+	return tmp;
+}
+
 int Get_Conf(map<string, string> &config)
 {
 	ifstream Conf_File;
@@ -55,7 +64,7 @@ int Regex_file(string File_Name)
 	Tmp_File.open(File_Name, ios::in);
 	if (!Tmp_File.is_open())
 	{
-		cerr << "[出错]--------------------------------------------打开检查文件：" << File_Name << endl;
+		cerr << "[" << getTime() << "]" << "[" << "出错]--------------------------------------------打开检查文件：" << File_Name << endl;
 		return -1;
 	}
 	//cout << "读取文件" << File_Name << endl;
@@ -71,7 +80,7 @@ int Regex_file(string File_Name)
 			if (Regex_line(Rd_Buf, Regexp, ret))
 			{
 				//cout << "匹配结果"<<ret << endl;
-				if (0 != Judge_Cmpfile_Is_Same(File_Name, line, Rd_Buf))
+				if (0 == Judge_Cmpfile_Is_Same(File_Name, line, Rd_Buf))
 				{
 					Output_Ret_To_Csv(File_Name, line, ret, Rd_Buf);	
 					//continue;
@@ -85,7 +94,7 @@ int Regex_file(string File_Name)
 			continue;
 		}
 	}
-	cerr << "[成功]--------------------------------------------检查文件：" << File_Name << endl;
+	cerr << "[" << getTime() << "]" << "[" << "成功]--------------------------------------------检查文件：" << File_Name << endl;
 	Tmp_File.close();
 
 	return 0;
