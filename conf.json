@@ -1,0 +1,26 @@
+{
+    "version":           1.1,
+    "name":              "GDPR_CHECK",
+    "src_directory":     "E:\TMP\test4",
+    "export_directory":  "E:\work\GDPR\export",
+    "text":
+    {
+         "text_rule1":         "tel:[\s]*[\*#+\d_-]+",        
+         "text_rule2":         "[\*#\+\.\d\w\s-]+@",
+         "text_rule3":         "\d{6,128}"
+    },
+    
+    "csv":
+    {
+        {
+            "columns":          "Additional Information",
+            "rule":             "(tel:[\s]*[\*#+\d_-]+)|([\*#\+\.\d\w\s-]+@)|(\d{6,128})"
+        },
+        
+        {
+            "columns":          "Detail",
+            "rule":             "(tel:[\s]*[\*#+\d_-]+)|([\*#\+\.\d\w\s-]+@)|(\d{6,128})"
+        }
+    }  
+
+}
