@@ -58,7 +58,7 @@ int main()
 	EndTime = localtime(&e_now);
 	int E_min = EndTime->tm_min;
 	int E_sec = EndTime->tm_sec;
-	cerr << "检查结束，文件数：" << FilesNum << "\t" << "耗时：" << E_min - S_min -1<< "min" << E_sec + 60 - S_sec << "sec" << endl;
+	cerr << "检查结束，文件数：" << FilesNum << "\t" << "耗时：" << ((E_min - S_min - 1) * 60 + E_sec + 60 - S_sec) / 60 << "min" << ((E_min - S_min - 1) * 60 + E_sec + 60 - S_sec) % 60 << "sec" << endl;
 	system("pause");
 	return 0;
 }
