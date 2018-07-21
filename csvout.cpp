@@ -8,6 +8,7 @@ void Creat_Out_Csv()
 	ofstream outcsv;
 	outcsv.open(".\\CheckRet.csv", ios::out);
 	outcsv << "文件名" << ',' << "行号" << ',' << "匹配参考"<<',' << "内容" << endl;
+	outcsv.close();
 }
 
 void Output_Ret_To_Csv(std::string File_Name, int line, const char* ret, std::string Rd_Buf)
